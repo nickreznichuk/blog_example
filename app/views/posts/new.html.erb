@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Новий пост</h2>
+  <%= form_for :post, url: posts_path do |f| %>
+    <% if @post.errors.any? %>
+        <% @post.errors.full_messages.each do |error| %>
+          <p class="alert alert-danger"><%= error %></p>
+        <% end %>
+    <% end %>
+    <div class="form-group">
+      <label for="FormControlSelect">Категория</label>
+      <%= f.select(:category_id, @categories.collect {|c| [ c.name, c.id]},{}, {class: "form-control", id: "FormControlSelect"}) %>
+    </div>
+    <div class="form-group">
+      <label for="InputTitle">Название поста</label>
+      <%= f.text_field :title, class: "form-control", id: "InputTitle", placeholder: "Заголовок" %>
+      <small id="emailHelp" class="form-text text-muted">Опишите о чем ваш пост</small>
+    </div>
+    <div class="form-group">
+      <label for="FormControlTextarea">Тело поста</label>
+      <%= f.text_area :body, class: "form-control", id: "FormControlTextarea" %>
+    </div>
+    <div class="form-group file_input_wrap">
+      <label for="customFile"  class="file-label">Файл</label>
+      <%= f.file_field :file, class: "file-input", id: "customFile" %>
+    </div>
+    <%= f.submit "Створити пост", class: "btn btn-primary" %>
+  <% end %>
+</div>

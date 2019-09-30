@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>Створити категорію</h2>
+  <% if @category.errors.any? %>
+    <% @category.errors.full_messages.each do |error| %>
+      <p class="alert alert-danger"><%= error %></p>
+    <% end %>
+  <% end %>
+  <%= form_for :category, url: categories_path do |f| %>
+    <div class="form-group">
+      <label for="InputTitle">Назва категорії</label>
+      <%= f.text_field :name, class: "form-control", id: "InputTitle", placeholder: "Введіть назву категорії" %>
+    </div>
+    <%= f.submit "Створити категорію", class: "btn btn-primary" %>
+  <% end %>
+</div>

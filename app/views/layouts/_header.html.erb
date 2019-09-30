@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#">Блог</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+<!--    <form class="form-inline my-2 my-lg-0">-->
+<!--      <input class="form-control mr-sm-2" type="text" placeholder="Введіть назву поста" aria-label="Search">-->
+<!--      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Пошук</button>-->
+<!--    </form>-->
+    <ul class="navbar-nav ml-auto">
+
+      <li class="nav-item active">
+
+        <%= link_to 'Головна', root_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item active">
+
+        <%= link_to 'Категорії', categories_path, class: "nav-link" %>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Функції</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown">
+          <%= link_to 'Створити пост', new_post_path, class: "dropdown-item" %>
+          <%= link_to 'Створити категорію', new_category_path, class: "dropdown-item" %>
+        </div>
+      </li>
+      <li class="nav-item active">
+        <% if user_signed_in? %>
+          <span class="nav-link user_email_style"><%= current_user.email %></span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <% if user_signed_in? %>
+          <%= link_to('Вийти', destroy_user_session_path, method: :delete, class: "btn btn-warning") %>
+        <% else %>
+          <%= link_to('Ввійти', new_user_session_path, class: "btn btn-primary") %>
+        <% end %>
+      </li>
+    </ul>
+
+  </div>
+</nav>

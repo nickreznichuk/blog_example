@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="row categories_wrap">
+    <% @categories.each do |cat| %>
+      <%= link_to cat.name, category_path(cat.id), class: "categories_link btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

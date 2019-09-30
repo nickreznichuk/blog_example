@@ -1,0 +1,26 @@
+<div class="container">
+  <h2 class="blog_title">All posts</h2>
+  <div class="row">
+
+    <% @posts.each do |post| %>
+      <div class="post_item col col-lg-4 col-md-6 col-sm-auto">
+        <h3 class=""><%= post.title %> </h3>
+
+        <div class="post_body_wrap">
+          <p><%= post.body %></p>
+        </div>
+        <div class="btn_wrap">
+          <%= link_to 'Читати детальніше...', post_path(post.id), class: "btn btn-outline-primary" %>
+          <div class="badge_wrap"><% if @time_now.to_i - post.created_at.to_i < 86000 %><span class="badge badge-secondary">New</span><% end %></div>
+        </div>
+        <hr>
+        <div class="post_bottom">
+          <p><%= post.created_at.strftime("%Y-%m-%d, %H:%M") %></p>
+<!--          <p><%#= post.user.email%></p>-->
+
+        </div>
+      </div>
+    <%end %>
+
+  </div>
+</div>

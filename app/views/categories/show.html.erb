@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="post_item_show col">
+      <h3 class=""><%= @category.name %></h3>
+      <%= link_to 'Редагувати категорію', edit_category_path(@category.id), class: "btn btn-warning" %>
+      <%= link_to 'Видалити категорію', category_path(@category.id), class: "btn btn-danger", method: :delete, data: {confirm: "Видалити категорію"} %>
+      <hr>
+    </div>
+  </div>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Пости</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Коментарі</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="row categories_show_wrap">
+        <div class="col">
+          <% @posts.each do |p| %>
+            <h4><%=p.title %></h4>
+            <p><%= p.body %></p>
+            <div class="btn_wrap">
+              <%= link_to 'Читати детальніше...', post_path(p.id), class: "btn btn-primary" %>
+              <div class="badge_wrap"><% if @time_now.to_i - p.created_at.to_i < 86000 %><span class="badge badge-secondary">New</span><% end %></div>
+            </div>
+            <hr>
+            <div class="post_bottom">
+              <p><%= p.created_at.strftime("%Y-%m-%d, %H:%M") %></p>
+              <p><%= p.user.email%></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="row flex_column">
+        <div class="col comment_js">
+          <% @category.categories_comments.each do |c| %>
+            <%= render "layouts/comments", c: c %>
+          <% end %>
+        </div>
+      </div>
+      <h2>Новый коммент</h2>
+      <div class="errors_wrap"></div>
+
+      <%= form_for([@category, @category.categories_comments.build],:html=>{:remote=>true, class: "comment_form"}) do |f| %>
+        <div class="form-group">
+          <label for="InputTitle">Имя Автора</label>
+          <%= f.text_field :author, class: "form-control", id: "InputTitle", placeholder: "Ваше имя" %>
+        </div>
+        <div class="form-group">
+          <label for="FormControlTextarea">Тело коммента</label>
+          <%= f.text_area :body, class: "form-control", id: "FormControlTextarea" %>
+        </div>
+        <%= f.submit "Создать коментарий", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
+</div>

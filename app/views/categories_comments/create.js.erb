@@ -1,0 +1,12 @@
+var str = ""
+if ("<%=@comment.errors.any? %>"== "true"){
+    $('.errors_wrap').html('')
+    str += "<%= j render "layouts/errors", c: @comment %>"
+    $('.errors_wrap').append('<p class="alert alert-danger">'+str+'</p>')
+}else{
+    $('.errors_wrap').html('')
+    str += "<%= j render "layouts/comments", c: @comment %>"
+    $('.comment_js').append(str)
+}
+
+

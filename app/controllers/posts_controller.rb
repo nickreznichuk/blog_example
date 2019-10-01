@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  before_action :aun
   def index
     @posts = Post.all
   end

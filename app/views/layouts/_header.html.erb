@@ -19,14 +19,23 @@
 
         <%= link_to 'Категорії', categories_path, class: "nav-link" %>
       </li>
+      <li class="nav-item active">
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Функції</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown">
-          <%= link_to 'Створити пост', new_post_path, class: "dropdown-item" %>
-          <%= link_to 'Створити категорію', new_category_path, class: "dropdown-item" %>
-        </div>
+        <%= link_to 'Створити пост', new_post_path, class: "nav-link" %>
       </li>
+      <li class="nav-item active">
+
+        <%= link_to 'Створити категорію', new_category_path, class: "nav-link" %>
+      </li>
+
+
+<!--      <li class="nav-item dropdown">-->
+<!--        <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Функції</a>-->
+<!--        <div class="dropdown-menu" aria-labelledby="dropdown">-->
+          <%#= link_to 'Створити пост', new_post_path, class: "dropdown-item" %>
+          <%#= link_to 'Створити категорію', new_category_path, class: "dropdown-item" %>
+<!--        </div>-->
+<!--      </li>-->
       <li class="nav-item active">
         <% if user_signed_in? %>
           <span class="nav-link user_email_style"><%= current_user.email %></span>
@@ -36,7 +45,7 @@
         <% if user_signed_in? %>
           <%= link_to('Вийти', destroy_user_session_path, method: :delete, class: "btn btn-warning") %>
         <% else %>
-          <%= link_to('Ввійти', new_user_session_path, class: "btn btn-primary") %>
+          <%= link_to('Увійти', new_user_session_path, class: "btn btn-primary") %>
         <% end %>
       </li>
     </ul>

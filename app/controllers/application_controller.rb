@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :all_categories, :uniq_visitors, :time_now
+  before_action :all_categories, :uniq_visitors, :time_now, :authenticate_user!
   def all_categories
     @categories = Category.all
   end

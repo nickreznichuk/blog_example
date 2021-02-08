@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.0'
 gem 'devise'
 gem 'activeadmin'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 gem 'rmagick', '~> 3.2'
 gem 'mini_magick', '~> 4.9', '>= 4.9.3'
 gem 'rack-cors'
